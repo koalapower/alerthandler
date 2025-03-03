@@ -1,0 +1,10 @@
+tls_server_config:
+  # Certificate and key files for server to use to authenticate to client.
+  cert_file: /full/path/to/certs/server-cert.pem
+  key_file: /full/path/to/certs/server-key.pem
+
+  # RequireAndVerifyClientCert. Other values are insecure.
+  client_auth_type: RequireAndVerifyClientCert
+
+  # CA certificate for client certificate authentication to the server.
+  client_ca_file: /full/path/to/certs/ca-cert.pem
