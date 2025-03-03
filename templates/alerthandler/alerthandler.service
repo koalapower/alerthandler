@@ -1,0 +1,11 @@
+[Unit]
+Description=Alert Handler for KUMA
+
+[Service]
+User=alerthandler
+Group=alerthandler
+Restart=on-failure
+ExecStart=/usr/bin/python3 /opt/alerthandler/alerthandler.py --config /opt/alerthandler/config.yml
+
+[Install]
+WantedBy=multi-user.target
