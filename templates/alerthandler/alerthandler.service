@@ -5,6 +5,7 @@ Description=Alert Handler for KUMA
 User=alerthandler
 Group=alerthandler
 Restart=on-failure
+ExecStartPre=+-/bin/chown -R alerthandler:alerthandler /opt/alerthandler
 ExecStart=python3 /opt/alerthandler/alerthandler.py --config /opt/alerthandler/config.yml
 
 [Install]
