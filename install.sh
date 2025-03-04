@@ -9,7 +9,7 @@ tar -xvf alertmanager-0.28.0.linux-amd64.tar.gz --one-top-level=/opt/alertmanage
 
 python3 -m pip install -r requirements.txt
 
-cp src/* /opt/alerthadler/
+cp src/* /opt/alerthandler/
 PYTHON="$(which python3)"
 sed -i "s|python3|$PYTHON|g" templates/alerthandler/alerthandler.service
 cp templates/alerthandler/config.yml /opt/alerthandler/
