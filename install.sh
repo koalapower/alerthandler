@@ -38,4 +38,4 @@ echo "***Chowning directories***"
 chown -R alertmanager:alertmanager /opt/alertmanager
 chown -R alerthandler:alerthandler /opt/alerthandler
 
-echo "***Installation complete***"
+echo "***Installation completed***"
