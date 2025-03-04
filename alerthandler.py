@@ -109,7 +109,8 @@ def check_status(status, response, alert_id):
 
 def main():
     
-    logging.basicConfig(level=logging.INFO, format="%(asctime)s;%(levelname)s;%(message)s", filename='alerthandler.log', filemode='w', encoding='utf_8')
+    log_handler = logging.FileHandler(filename='/opt/alerthandler/alerthandler.log', encoding='utf_8')
+    logging.basicConfig(handlers=[log_handler], level=logging.INFO, format="%(asctime)s;%(levelname)s;%(message)s")
     logging.info("Alerthandler started")
     
     parser = argparse.ArgumentParser()
