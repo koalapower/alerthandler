@@ -12,13 +12,13 @@ kuma:
   # KUMA API token
   token: 00000000000000000000000000000000 # without 'Bearer'
   # KUMA Rest API CA
-  ca: /opt/alerthandler/certs/core-external-ca.cert # keep empty if cert verification isn't needed
+  ca: #/opt/alerthandler/certs/core-external-ca.cert # keep empty if cert verification isn't needed
 alertmanager:
   # Base alert manager url
-  baseurl: https://alertmanager.abc.lab:9093/api/v2 # If you're not sure change only FQDN to your ip/fqdn
+  baseurl: http://alertmanager.abc.lab:9093/api/v2 # If you're not sure change only FQDN to your ip/fqdn
   # Client certificate
-  client_cert: /opt/alerthandler/certs/client-cert.pem # If client Auth needed
+  client_cert: #/opt/alerthandler/certs/client-cert.pem # If client Auth needed
   # Client private key
-  client_key: /opt/alerthandler/certs/client-key.pem # If client Auth needed
+  client_key: #/opt/alerthandler/certs/client-key.pem # If client Auth needed
   # Alertmanager CA cert
-  server_ca: /opt/alerthandler/certs/ca-cert.pem # To verify server cert
+  server_ca: #/opt/alerthandler/certs/ca-cert.pem # To verify server cert
