@@ -21,7 +21,7 @@ Alerthandler - модуль на языке python, который опраши�
 
 # Настройка
 
-1. Правим файл конфигурации alertmanager под себя, можно использовать # чтобы закомментировать строки
+1. Правим файл конфигурации alertmanager под себя в соответствии с [документацией](https://prometheus.io/docs/alerting/latest/configuration/), можно использовать # чтобы закомментировать строки
 ```
 vi /opt/alertmanager/alertmanager.yml
 ```
@@ -30,6 +30,9 @@ vi /opt/alertmanager/alertmanager.yml
 cd /opt/alertmanager/
 sudo -u alertmanager /opt/alertmanager/alertmanager --config.file /opt/alertmanager/alertmanager.yml --log.level=debug
 ```
+
+Если выполнение не останавливается и в выводе присутствуют только INFO и DEBUG, значит все ок.
+
 3. Если все ок, можно запускать сервис
 ```
 systemctl daemon-reload
@@ -49,6 +52,9 @@ vi /opt/alerthandler/config.yml
 cd /opt/alerthandler/
 sudo -u alerthandler python3 /opt/alerthandler/alerthandler.py
 ```
+
+Если в выводе отсутствует какая-либо информация или traceback, значит все ок
+
 7. Если все ок можно запускать сервис:
 ```
 systemctl enable alerthandler.service
