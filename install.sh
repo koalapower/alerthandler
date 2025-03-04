@@ -5,7 +5,7 @@ mkdir /opt/alerthandler/db/
 mkdir /opt/alerthandler/certs/
 mkdir /opt/alertmanager/
 
-tar -xvf $1 --one-top-level=/opt/alertmanager/ --strip-components=1
+tar -xvf alertmanager-0.28.0.linux-amd64.tar.gz --one-top-level=/opt/alertmanager/ --strip-components=1
 
 python3 -m pip install -r requirements.txt
 
