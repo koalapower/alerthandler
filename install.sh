@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 echo "***Creating directories***"
 
 mkdir /opt/alerthandler/
