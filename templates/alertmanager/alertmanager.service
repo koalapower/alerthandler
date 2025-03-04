@@ -7,7 +7,7 @@ After=network-online.target
 User=alertmanager
 Group=alertmanager
 Type=simple
-WorkingDirectory=/etc/alertmanager/
+WorkingDirectory=/opt/alertmanager/
 ExecStart=/opt/alertmanager/alertmanager --config.file=/opt/alertmanager/alertmanager.yml
 
 [Install]
