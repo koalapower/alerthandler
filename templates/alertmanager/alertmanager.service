@@ -8,6 +8,7 @@ User=alertmanager
 Group=alertmanager
 Type=simple
 WorkingDirectory=/opt/alertmanager/
+ExecStartPre=+-/bin/chown -R alertmanager:alertmanager /opt/alertmanager
 ExecStart=/opt/alertmanager/alertmanager --config.file=/opt/alertmanager/alertmanager.yml
 
 [Install]
