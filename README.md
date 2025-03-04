@@ -8,7 +8,7 @@ Alerthandler - модуль на языке python, который опраши�
 - python 3.6+ (requests, pyyaml)
 
 # Установка
-1. Скачайте alerthandler-<version>.tar.gz на странице [Releases](https://github.com/koalapower/alerthandler/releases)
+1. Скачайте `alerthandler-<version>.tar.gz` на странице [Releases](https://github.com/koalapower/alerthandler/releases)
 2. Распакуйте архив: `tar -xf alerthandler-<version>.tar.gz`
 3. Перейдите в директорию: `cd alerthandler/`
 4. Задайте права на исполнение файлу install: `chmod +x install.sh`
