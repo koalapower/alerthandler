@@ -3,7 +3,7 @@ general:
   timezone: "+0300" # format +/-HHMM
 db:
   # full path to place where alert metadata will be keept
-  path: /full/path/to/db/alerts.db 
+  path: /opt/alerthandler/db/alerts.db 
 kuma:
   # ip or fqdn address of KUMA core
   address: kuma.abc.lab # use FQDN if server cert verification is needed
@@ -12,13 +12,13 @@ kuma:
   # KUMA API token
   token: 00000000000000000000000000000000 # without 'Bearer'
   # KUMA Rest API CA
-  ca: /full/path/to/core-external-ca.cert # keep empty if cert verification isn't needed
+  ca: /opt/alerthandler/certs/core-external-ca.cert # keep empty if cert verification isn't needed
 alertmanager:
   # Base alert manager url
   baseurl: https://alertmanager.abc.lab:9093/api/v2 # If you're not sure change only FQDN to your ip/fqdn
   # Client certificate
-  client_cert: /full/path/to/client-cert.pem # If client Auth needed
+  client_cert: /opt/alerthandler/certs/client-cert.pem # If client Auth needed
   # Client private key
-  client_key: /full/path/to/client-key.pem # If client Auth needed
+  client_key: /opt/alerthandler/certs/client-key.pem # If client Auth needed
   # Alertmanager CA cert
-  server_ca: /full/path/to/ca-cert.pem # To verify server cert
+  server_ca: /opt/alerthandler/certs/ca-cert.pem # To verify server cert
