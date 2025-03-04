@@ -1,9 +1,10 @@
 global:
-  smtp_smarthost: '10.0.0.11:25'
-  smtp_from: 'kuma@abc.lab'
-  smtp_auth_username: 'kuma@abc.lab'
-  smtp_auth_password: 'not_a_secret'
+  smtp_smarthost: "10.0.0.11:25"
+  smtp_from: "kuma@abc.lab"
+  smtp_auth_username: "kuma@abc.lab"
+  smtp_auth_password: "not_a_secret"
   smtp_require_tls: false
+  resolve_timeout: 20s
 
 route:
   group_by: ['...']
@@ -11,16 +12,21 @@ route:
   group_interval: 1m
   repeat_interval: 10m
   receiver: 'blackhole'
+  
   routes:
     - receiver: 'webhook'
+      continue: true
       matchers:
-        - alertname =~ 'new_alert|updated|closed'
+        - alertname =~ "new_alert|updated|closed"
+        
     - receiver: 'telegram'
+      continue: true
       matchers:
-        - notification_type =~ 'new_alert|closed'
+        - notification_type =~ "new_alert|closed"
+        
     - receiver: 'email'
       matchers:
-        - notification_type = 'assigned'
+        - notification_type = "new_alert|closed|assigned"
 
 receivers:
 
@@ -34,15 +40,18 @@ receivers:
       - send_resolved: false
         bot_token: 0000000fffffffff 
         chat_id: 00000000 
-        message: '{{ commonLabels.first_seen }} произошла сработка алерта {{ .commonLabels.alert_name }} с критичностью {{ .commonLabels.alert_priority }}'
+        message: '{{ .CommonLabels.first_seen }} произошла сработка алерта {{ .CommonLabels.alert_name }} с критичностью {{ .CommonLabels.alert_priority }}'
         # Parse mode for telegram message, supported values are MarkdownV2, Markdown, HTML and empty string for plain text.
         parse_mode: "HTML"
 
   - name: 'email'
     email_configs:
-      - to: '{{ .commonLabels.assignee }}@demo.lab'
+      - to: 'admin@abc.lab'
         headers:
-          Subject: '{{ .commonLabels.alert_name }}|{{ .commonLabels.alert_priority }}|{{ commonLabels.first_seen }}'
-        text: '{{ .commonLabels.first_seen }} произошла сработка алерта {{ .commonLabels.alert_name }} с критичностью {{ .commonLabels.alert_priority }}'
+          Subject: '{{ .CommonLabels.alert_name }} {{if eq .CommonLabels.notification_type "new_alert"}} fired! {{ else }} {{ .CommonLabels.notification_type }} {{ end }}'
+        html: '{{ template "email.CUSTOM.html" . }}'
 
   - name: 'blackhole' # empty receiver for blackholing alerts
+
+templates:
+  - "/opt/alertmanager/email.tmpl"
