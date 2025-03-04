@@ -17,7 +17,7 @@ route:
     - receiver: 'webhook'
       continue: true
       matchers:
-        - alertname =~ "new_alert|updated|closed"
+        - notification_type =~ "new_alert|updated|closed"
         
 #    - receiver: 'telegram'
 #      continue: true
@@ -26,7 +26,7 @@ route:
         
     - receiver: 'email'
       matchers:
-        - notification_type = "new_alert|closed|assigned"
+        - notification_type =~ "new_alert|closed|assigned"
 
 receivers:
 
