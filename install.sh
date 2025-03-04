@@ -7,6 +7,8 @@ mkdir /opt/alertmanager/
 
 tar -xvf $1 --one-top-level=/opt/alertmanager/ --strip-components=1
 
+python3 -m pip install -r requirements.txt
+
 cp src/* /opt/alerthadler/
 PYTHON="$(which python3)"
 sed -i "s|python3|$PYTHON|g" templates/alerthandler/alerthandler.service
