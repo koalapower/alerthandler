@@ -19,10 +19,10 @@ route:
       matchers:
         - alertname =~ "new_alert|updated|closed"
         
-    - receiver: 'telegram'
-      continue: true
-      matchers:
-        - notification_type =~ "new_alert|closed"
+#    - receiver: 'telegram'
+#      continue: true
+#      matchers:
+#        - notification_type =~ "new_alert|closed"
         
     - receiver: 'email'
       matchers:
@@ -35,14 +35,14 @@ receivers:
       - url: 'http://10.0.0.10:6001/input'
         send_resolved: false
 
-  - name: 'telegram'
-    telegram_configs:
-      - send_resolved: false
-        bot_token: 0000000fffffffff 
-        chat_id: 00000000 
-        message: '{{ .CommonLabels.first_seen }} произошла сработка алерта {{ .CommonLabels.alert_name }} с критичностью {{ .CommonLabels.alert_priority }}'
-        # Parse mode for telegram message, supported values are MarkdownV2, Markdown, HTML and empty string for plain text.
-        parse_mode: "HTML"
+#  - name: 'telegram'
+#    telegram_configs:
+#      - send_resolved: false
+#        bot_token: 0000000fffffffff 
+#        chat_id: 00000000 
+#        message: '{{ .CommonLabels.first_seen }} произошла сработка алерта {{ .CommonLabels.alert_name }} с критичностью {{ .CommonLabels.alert_priority }}'
+# Parse mode for telegram message, supported values are MarkdownV2, Markdown, HTML and empty string for plain text.
+#        parse_mode: "HTML"
 
   - name: 'email'
     email_configs:
