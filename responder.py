@@ -79,7 +79,8 @@ class Responder:
             "alert_assets": str(alert['affectedAssets']),
             # array to string because of alermanager limitations
             "alert_accounts": str(alert['affectedAccounts']),
-            "notification_type": notification_type
+            "notification_type": notification_type,
+            "KUMA_URL": "https://" + self.config['kuma']['address'] + ":7220/alerts/" + alert['id']
         }}]
         return message
 
