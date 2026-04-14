@@ -1,5 +1,7 @@
 # alerthandler
 
+English version below
+
 Alerthandler - модуль на языке python, который опрашивает KUMA по REST API v1 на предмет изменения информации об алертах и отправляет эту информацию в Alertmanager для дальнейшей их отправки выбранным получателям.
 
 # Требования
@@ -79,3 +81,87 @@ systemctl status alerthandler.service
   <img src="https://github.com/user-attachments/assets/afc6981e-e4a0-44a1-b0e8-00ad55e99c30">
 </details>
 
+---
+
+# English version
+
+# alerthandler
+
+Alerthandler is a Python module that polls KUMA via REST API v1 for changes in alert information and forwards that information to Alertmanager for further delivery to selected recipients.
+
+# Requirements
+
+- alertmanager 0.28
+- python 3.6+ (requests, pyyaml)
+
+# Installation
+1. Download `alerthandler-<version>.tar.gz` from the [Releases](https://github.com/koalapower/alerthandler/releases) page
+2. Extract the archive: `tar -xf alerthandler-<version>.tar.gz`
+3. Navigate to the directory: `cd alerthandler/`
+4. Grant execute permission to the install script: `chmod +x install.sh`
+5. Run the installation: `sudo ./install.sh`
+
+The installation will perform the following:
+- create directories /opt/alertmanager/ and /opt/alerthandler/
+- place the necessary program files into the respective directories
+- create alertmanager.service and alerthandler.service systemd services
+- create alerthandler and alertmanager system users
+
+# Configuration
+
+1. Edit the alertmanager configuration file to suit your needs. You can use # to comment out lines.
+The current version includes examples for email, Telegram, and webhook delivery. For other integration options and more advanced configuration, refer to the [Alertmanager](https://prometheus.io/docs/alerting/latest/configuration/) documentation.
+```
+vi /opt/alertmanager/alertmanager.yml
+```
+2. Navigate to the directory and run manually in debug mode to check for errors
+```
+cd /opt/alertmanager/
+sudo -u alertmanager /opt/alertmanager/alertmanager --config.file /opt/alertmanager/alertmanager.yml --log.level=debug
+```
+
+If the process does not stop and the output contains only INFO and DEBUG entries, everything is working correctly.
+
+3. If everything is ok, start the service
+```
+systemctl daemon-reload
+systemctl enable alertmanager.service
+systemctl start alertmanager.service
+```
+4. Check the service status
+```
+systemctl status alertmanager.service
+```
+5. Edit the alerthandler configuration file to suit your needs. You can use # to comment out lines.
+```
+vi /opt/alerthandler/config.yml
+```
+6. Navigate to the directory and run manually to check for errors
+```
+cd /opt/alerthandler/
+sudo -u alerthandler python3 /opt/alerthandler/alerthandler.py
+```
+
+If there is no output or traceback, everything is working correctly.
+
+7. If everything is ok, start the service:
+```
+systemctl enable alerthandler.service
+systemctl start alerthandler.service
+```
+8. Check the service status
+```
+systemctl status alerthandler.service
+```
+
+# Examples
+
+<details>
+  <summary>Email notification</summary>
+  <img src="https://github.com/user-attachments/assets/4434fff8-5d8f-4f68-b63a-cc1442aaea9d">
+</details>
+
+<details>
+  <summary>KUMA event with an HTTP connector and JSON parser</summary>
+  <img src="https://github.com/user-attachments/assets/afc6981e-e4a0-44a1-b0e8-00ad55e99c30">
+</details>
